@@ -16,79 +16,11 @@ namespace Sport.Mobile.Shared
         private int score;
         private Question currentQuestion;
 
-        public NewGamePage()
+        public NewGamePage(IEnumerable<Question> questions)
         {
             Title = "New Game";
             BarBackgroundColor = Color.FromHex("#03A9F4");
-            _questions = new Stack<Question>(new List<Question>()
-            {
-                new Question()
-                {
-                    QuestionText = "Ngomntinini uyangena kumntonono kodwa umntonono akangeni kumntinini",
-                    Answers = new List<Answer>()
-                    {
-                        new Answer()
-                        {
-                            AnswerText = "Isitsha esincane nesikhulu",
-                            Correct = true
-                        },
-                        new Answer()
-                        {
-                            AnswerText = "Imali",
-                            Correct = false
-                        },
-                        new Answer()
-                        {
-                            AnswerText = "Unogwaja",
-                            Correct = false
-                        }
-                    }
-                },
-                new Question()
-                {
-                    QuestionText = "Ngenkomo yami ebomvu ehlala esibayeni esimhlophe",
-                    Answers = new List<Answer>()
-                    {
-                        new Answer()
-                        {
-                            AnswerText = "Ulimi namazinyo",
-                            Correct = true,
-                        },
-                        new Answer()
-                        {
-                            AnswerText = "Inkomo enhlatshiwe",
-                            Correct = false
-                        },
-                        new Answer()
-                        {
-                            AnswerText = "Umlilo",
-                            Correct = false
-                        }
-                    }
-                },
-                new Question()
-                {
-                    QuestionText = "Ngomagxuma azibambele",
-                    Answers = new List<Answer>()
-                    {
-                        new Answer()
-                        {
-                            AnswerText = "Iphalishi",
-                            Correct = true
-                        },
-                        new Answer()
-                        {
-                            AnswerText = "Umbila",
-                            Correct = false
-                        },
-                        new Answer()
-                        {
-                            AnswerText = "Intwala",
-                            Correct = false
-                        }
-                    }
-                }
-            });
+            _questions = new Stack<Question>(questions);
             Initialize();
         }
 
@@ -118,6 +50,10 @@ namespace Sport.Mobile.Shared
         {
             await SelectOption(OptionSelected.OptionC);
         }
+        public async void OptionDClicked(object sender, EventArgs e)
+        {
+            await SelectOption(OptionSelected.OptionD);
+        }
 
         private async Task SelectOption(OptionSelected option)
         {
@@ -136,6 +72,11 @@ namespace Sport.Mobile.Shared
                 case OptionSelected.OptionC:
                     {
                         await EvaluateCurrentQuestion(2);
+                    }
+                    break;
+                case OptionSelected.OptionD:
+                    {
+                        await EvaluateCurrentQuestion(3);
                     }
                     break;
             }
@@ -207,6 +148,7 @@ namespace Sport.Mobile.Shared
             BtnOptionA.Text = question.Answers.ToArray()[0].AnswerText;
             BtnOptionB.Text = question.Answers.ToArray()[1].AnswerText;
             BtnOptionC.Text = question.Answers.ToArray()[2].AnswerText;
+            BtnOptionD.Text = question.Answers.ToArray()[3].AnswerText;
         }
     }
 
@@ -214,7 +156,8 @@ namespace Sport.Mobile.Shared
     {
         OptionA = 1,
         OptionB,
-        OptionC
+        OptionC,
+        OptionD
     }
 
     public partial class NewGamePageXaml : BaseContentPage<BaseViewModel>

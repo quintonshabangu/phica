@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using System.Threading.Tasks;
+using Sport.Mobile.Shared.Services;
 
 namespace Sport.Mobile.Shared
 {
@@ -40,7 +41,10 @@ namespace Sport.Mobile.Shared
 
         async void NewGame(object sender, EventArgs e)
 		{
-		    await Navigation.PushAsync(new NewGamePage());
+		    var service = new QuestionsService();
+            var questions = await service.GetQuestions();
+
+            await Navigation.PushAsync(new NewGamePage(questions));
         }
 
 	    async void HighScores(object sender, EventArgs e)

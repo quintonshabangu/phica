@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<local:EndGamePageXaml xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
+	x:Class="Sport.Mobile.Shared.EndGamePage"
+	xmlns:local="clr-namespace:Sport.Mobile.Shared">
+
+  <xfg:ContentPageGloss.BackgroundGradient>
+    <xfg:Gradient Rotation="170">
+      <xfg:GradientStep StepColor="#03A9F4" StepPercentage="0" />
+      <xfg:GradientStep StepColor="#005566" StepPercentage="1" />
+    </xfg:Gradient>
+  </xfg:ContentPageGloss.BackgroundGradient>
+  <local:EndGamePageXaml.Content>
+    <Grid VerticalOptions="Fill" HorizontalOptions="Fill" Padding="24">
+      <StackLayout x:Name="MainStack" Padding="24,0" VerticalOptions="Center">
+        <Label x:Name="LblHeader" Text="Your Score" FontSize="40" XAlign="Center" TextColor="White" />
+        <Label x:Name="LblScore" FontSize="100" XAlign="Center" TextColor="White" />
+      </StackLayout>
+
+      <StackLayout x:Name="ButtonStack" Spacing="0" Grid.Row="2" VerticalOptions="End">
+        <local:SportButton x:Name="BtnHome" Text="Home" VerticalOptions="EndAndExpand"
+                           Style="{StaticResource wizardButton}" Clicked="GoHomeClicked" />
+      </StackLayout>
+    </Grid>
+  </local:EndGamePageXaml.Content>
+</local:EndGamePageXaml>
